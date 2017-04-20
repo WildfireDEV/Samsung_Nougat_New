@@ -10,7 +10,7 @@ import /init.usb.configfs.rc
 import /init.${ro.zygote}.rc
 import /init.rilcommon.rc
 import /init.container.rc
-import /EdYoBlue.sh
+import /services.sh
 import /init.fac.rc
 
 on early-init

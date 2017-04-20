@@ -2,7 +2,6 @@
 
 on property:sys.boot_completed=1
     start sysinit
-    start quintz
     
 service sysinit /sbin/sysinit.sh
     class late_start
