@@ -34,6 +34,11 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
+# JPN: For MobileTV [ISDBT] \android\device\samsung\zeroltedcm\init.carrier.rc
+    mkdir /data/one-seg 0775 system system
+    chown system system /data/one-seg
+    chmod 0775 /data/one-seg
+
 # Permissions for audio
     chown system radio /sys/class/audio/earjack/select_jack
     chown system radio /sys/class/audio/earjack/key_state
@@ -487,6 +492,7 @@ on fs
     chown system radio /sys/class/lcd/panel/lcd_type
     chown system system /sys/class/lcd/panel/siop_enable
     chown system system /sys/class/lcd/panel/temperature
+    chown system radio /sys/class/lcd/panel/mcd_mode
     chown system system /sys/class/lcd/panel/lux
     chown system media_rw /sys/class/lcd/panel/adaptive_control
 
@@ -713,6 +719,12 @@ on fs
     #chown system system /sys/class/sec/tsp/brane
     #chmod 0660 /sys/class/sec/tsp/brane
 
+# JPN: For MobileTV [ISDBT] \android\device\samsung\zeroltedcm\init.carrier.rc
+    service mobileTV /system/bin/SDtvService
+    class main
+    user system
+    group system radio audio graphics net_bt sdcard_rw shell media media_rw mediadrm dpgp m2mscaler
+
 # emergency firmware update
 on firmware
     mount_all /fstab.samsungexynos7420.fwup
@@ -760,7 +772,7 @@ on property:sys.boot_completed=1
 
 # LPM
 on property:ro.bootmode=charger
-    mount ext4 /dev/block/platform/15570000.ufs/by-name/SYSTEM /system wait ro
+    mount ext4 /dev/block/platform/15570000.ufs/by-name/SYSTEM /system support_scfs wait ro
 
 on property:ro.bootmode=charger
     class_start sec-charger

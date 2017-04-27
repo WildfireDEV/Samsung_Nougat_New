@@ -17,12 +17,6 @@
 /sbin/resetprop -n ro.boot.warranty_bit "0"
 /sbin/resetprop -n ro.warranty_bit "0"
 
-# Fix some safetynet flags
-/sbin/resetprop -n ro.boot.veritymode "enforcing"
-/sbin/resetprop -n ro.boot.verifiedbootstate "green"
-/sbin/resetprop -n ro.boot.flash.locked "1"
-/sbin/resetprop -n ro.boot.ddrinfo "00000001"
-
 # Deepsleep fix
 su -c 'echo "temporary none" >> /sys/class/scsi_disk/0:0:0:0/cache_type'
 su -c 'echo "temporary none" >> /sys/class/scsi_disk/0:0:0:1/cache_type'
